@@ -58,5 +58,61 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
 
+/**
+ * PART A: Prints the multiplication table for a single number from 1 to 12.
+ * @param {number} num - The number to generate the table for.
+ */
+function printSingleTable(num) {
+  console.log(`\nMultiplication Table for ${num}:`);
+  for (let i = 1; i <= 12; i++) {
+    const product = num * i;
+    // Formatting with String.prototype.padStart for aligned columns
+    const multiplierStr = String(i).padStart(2, ' ');
+    const productStr = String(product).padStart(3, ' ');
+    console.log(`${num}  x  ${multiplierStr} = ${productStr}`);
+  }
+}
+
+/**
+ * PART B: Prints multiplication tables for every number from 1 to N.
+ * @param {number} n - The upper limit number.
+ */
+function printRangeTables(n) {
+  for (let i = 1; i <= n; i++) {
+    printSingleTable(i);
+    if (i < n) {
+      console.log('---------------------------');
+    }
+  }
+}
+
+/**
+ * Main execution function.
+ */
+function main() {
+  console.log('=== PART A: Single Table ===');
+  const num = readlineSync.questionInt('Enter a number: ');
+
+  if (num <= 0) {
+    console.log('Error: Please enter a positive integer greater than 0.');
+    return;
+  }
+
+  printSingleTable(num);
+
+  console.log('\n=== PART B: Tables 1 to N ===');
+  const range = readlineSync.questionInt('Enter N for tables 1 to N: ');
+
+  if (range <= 0) {
+    console.log('Error: Please enter a positive integer greater than 0.');
+    return;
+  }
+
+  printRangeTables(range);
+}
+
+// Execute the program
+main();
 
